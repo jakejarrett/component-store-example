@@ -11,6 +11,7 @@
 
     <!-- Could be inline styles, but we want to keep the example JSX as clean as possible -->
     <style>
+        body, html { background: #333; color: #fff; }
     .actions,
     .messages {
         display:block;
@@ -24,17 +25,17 @@
         border:0;
     }
     .message {
-        background-color: white;
+        background-color: rgba(0,0,0,0.4);
         margin: 4px;
         text-align: left;
         padding: 6px;
         border-left: 4px solid transparent;
     }
     .message.unread {
-        border-left: 4px solid lightblue;
+        border-left: 4px solid hotpink;
     }
     .message.selected {
-        background-color: cornflowerblue;
+        background-color: rgba(0,0,0,0.8);
         color: white;
     }
     .message .subject {
@@ -92,8 +93,6 @@
     <script src="./src/stores/message-store.js"></script>
     <script src="./src/stores/component-store.js"></script>
     <script src="./src/app.js"></script>
-
-    <!-- Compile js in the Browser -->
-    <script type="text/javascript" src="https://wzrd.in/standalone/coffee-react-browser"></script>
+    
   </body>
 </html>

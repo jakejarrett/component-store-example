@@ -25,6 +25,7 @@ const MarkAsReadComponent = React.createClass({
   render() {
     // Try throwing an exception in here for fun!
     // @doesNotExist()
+    throw new Error("AHHHH")
 
     let classname = 'btn';
     if (

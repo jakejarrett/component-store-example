@@ -50,10 +50,9 @@ const LoadPluginButton = React.createClass({
 
   _onClick() {
     const script = document.createElement('script');
-    script.setAttribute('type', 'text/cjsx');
     script.setAttribute(
       'src',
-      'http://localhost:9001/src/plugins/test-plugin.cjsx',
+      'http://localhost:9001/src/plugins/test-plugin.js',
     );
     document.head.appendChild(script);
 
