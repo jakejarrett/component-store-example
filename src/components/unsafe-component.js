@@ -74,13 +74,15 @@ window.UnsafeComponent = class UnsafeComponent extends Component {
 			stack = stack.substr(0, stackEnd);
 		}
 
+		console.log();
+
 		element = createElement(
 			'div',
 			{ className: 'unsafe-component-exception' },
 			createElement(
 			'div',
 			{ className: 'message' },
-			this.props.component.displayName,
+			this.props.component.name,
 			' could not be displayed.',
 			),
 			createElement('div', { className: 'trace' }, stack),
