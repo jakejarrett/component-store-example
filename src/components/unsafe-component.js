@@ -57,39 +57,37 @@ window.UnsafeComponent = class UnsafeComponent extends Component {
 	}
 
 	renderInjected () {
-		let props;
 		const node = findDOMNode(this);
-		let element = null;
+		let props, element;
+
 		try {
-		props = _.omit(this.props, _.keys(this.propTypes));
-		element = createElement(this.props.component, { ...{ key: name }, ...props });
-		this.injected = render(element, node);
+			props = _.omit(this.props, _.keys(this.propTypes));
+			element = createElement(this.props.component, { ...{ key: name }, ...props });
+			this.injected = render(element, node);
 		} catch (err) {
-		console.error(err);
-		let { stack } = err;
-		console.log(stack);
-		let stackEnd = stack.indexOf('/react/');
-		if (stackEnd > 0) {
-			stackEnd = stack.lastIndexOf('\n', stackEnd);
-			stack = stack.substr(0, stackEnd);
+			console.error(err);
+			let { stack } = err;
+			console.log(stack);
+			let stackEnd = stack.indexOf('/react/');
+			if (stackEnd > 0) {
+				stackEnd = stack.lastIndexOf('\n', stackEnd);
+				stack = stack.substr(0, stackEnd);
+			}
+
+			element = createElement(
+				'div',
+				{ className: 'unsafe-component-exception' },
+				createElement(
+				'div',
+				{ className: 'message' },
+				this.props.component.name,
+				' could not be displayed.',
+				),
+				createElement('div', { className: 'trace' }, stack),
+			);
+		} finally {
+			return (this.injected = render(element, node));
 		}
-
-		console.log();
-
-		element = createElement(
-			'div',
-			{ className: 'unsafe-component-exception' },
-			createElement(
-			'div',
-			{ className: 'message' },
-			this.props.component.name,
-			' could not be displayed.',
-			),
-			createElement('div', { className: 'trace' }, stack),
-		);
-		}
-
-		return (this.injected = render(element, node));
 	}
 
 	unmountInjected () {

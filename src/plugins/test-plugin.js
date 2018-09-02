@@ -38,7 +38,7 @@ class MarkAsReadComponent extends Component {
 
     return React.createElement(
       'div',
-      { className: classname, onClick: this._onClick },
+      { className: classname, onClick: this._onClick.bind(this) },
       `
         Mark as Read
       `,
